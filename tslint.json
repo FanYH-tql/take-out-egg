@@ -1,0 +1,13 @@
+{
+  "extends": ["tslint-config-egg"],
+  "rules": {
+    "trailing-comma": false,
+    "no-trailing-whitespace": false,
+    "semicolon": false,
+    "linebreak-style": false,
+    "eofline": false,
+    "no-namespace": false,
+    "no-unused-expression": false,
+    "prefer-for-of": false
+  }
+}
