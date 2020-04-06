@@ -15,6 +15,13 @@ class GoodsController extends Controller {
     response(ctx, 200, '', Array.from(res))
   }
 
+  public async some() {
+    const ctx = this.ctx
+    console.log(ctx.request.body)
+    const res = await ctx.service.goods.some(ctx.request.body)
+    response(ctx, 200, '', res)
+  }
+
   public async delete() {
     const ctx = this.ctx
     const res = await ctx.service.goods.delete(ctx.query)

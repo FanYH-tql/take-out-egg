@@ -60,6 +60,14 @@ class BusinessService extends Service {
       return results
     })
   }
+  public async getOne(business_id: number) {
+    return transaction(this, async conn => {
+      const result = await conn.get('business', {
+        business_id
+      })
+      return result
+    })
+  }
 
   public async update(body: BusinessParams.UpdateBody) {
     return transaction(this, async conn => {
@@ -92,6 +100,22 @@ class BusinessService extends Service {
         user_name: account
       })
       const res = await Promise.all([ p1, p2 ])
+      return res
+    })
+  }
+
+  public async search(query: any) {
+    return transaction(this, async conn => {
+      let res
+      if (query.name) {
+        res = await conn.query(`select * from business where business_name like '%${query.name}%'`)
+      } else {
+        res = await conn.select('business', {
+          where: {
+            category_id: query.category
+          }
+        })
+      }
       return res
     })
   }

@@ -1,6 +1,6 @@
 import { Service } from 'egg'
 import transaction from '../utils/transaction'
-namespace UploadParams {
+namespace WXUserParams {
   export interface UpdateBody {
     openid: string
     avatarUrl: string
@@ -14,7 +14,7 @@ namespace UploadParams {
   }
 }
 export default class WXUserService extends Service {
-  public async update(params: UploadParams.UpdateBody) {
+  public async update(params: WXUserParams.UpdateBody) {
     return transaction(this, async conn => {
       const r1 = await conn.get('customer', {
         openid: params.openid

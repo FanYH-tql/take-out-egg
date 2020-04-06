@@ -35,6 +35,7 @@ export default class UserService extends Service {
         telephone: res.user_phone,
         createTime: res.user_createTime,
         roleId: res.role_id,
+        business_id: res.business_id,
         lang: 'zh-CN',
         token
       }
@@ -107,5 +108,28 @@ export default class UserService extends Service {
       return list
     }, this.ctx)
     return result
+  }
+
+  public async delete(query) {
+    return transaction(this, async conn => {
+      await conn.delete('user', {
+        user_id: query.user_id
+      })
+      await conn.delete('business', {
+        business_id: query.business_id
+      })
+    })
+  }
+
+  public async update(body) {
+    return transaction(this, async conn => {
+      await conn.update('user', {
+        ...body
+      }, {
+        where: {
+          user_id: body.user_id
+        }
+      })
+    })
   }
 }

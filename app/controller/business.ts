@@ -67,5 +67,18 @@ class BusinessController extends Controller {
       }
     }
   }
+
+  public async getOne() {
+    const ctx = this.ctx
+    const res = await ctx.service.business.getOne(ctx.query.id)
+    response(ctx, 200, '', res)
+  }
+
+
+  public async search() {
+    const ctx = this.ctx
+    const res = await ctx.service.business.search(ctx.query)
+    response(ctx, 200, '', res)
+  }
 }
 export default BusinessController

@@ -33,7 +33,17 @@ export default class GoodsService extends Service {
           business_id
         }
       })
-      console.log(res)
+      return res
+    })
+  }
+  
+  public async some(params) {
+    return transaction(this, async conn => {
+      const res = await conn.select('goods', {
+        where: {
+          goods_id: params.ids
+        }
+      })
       return res
     })
   }

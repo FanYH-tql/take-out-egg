@@ -18,7 +18,24 @@ export default (appInfo: EggAppInfo) => {
   }
   config.jwt = {
     enable: true,
-    ignore: [ '/api/user/login', '/wx/user/login', '/wx/business/list', '/wx/goods/list' ], // 哪些请求不需要认证
+    ignore: [ 
+      '/api/user/login', 
+      '/wx/user/login', 
+      '/wx/business/list', 
+      '/wx/goods/list',
+      '/wx/address/create',
+      '/wx/address/list',
+      '/wx/address/delete',
+      '/wx/address/update',
+      '/wx/address/set',
+      '/wx/order/create',
+      '/wx/order/list',
+      '/wx/order/pay',
+      '/wx/order/delete',
+      '/wx/assess/create',
+      '/wx/assess/list',
+      '/wx/business/search'
+    ], // 哪些请求不需要认证
   }
 
   config.mysql = {

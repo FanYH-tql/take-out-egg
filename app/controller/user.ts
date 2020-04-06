@@ -50,5 +50,18 @@ class UserController extends Controller {
       data: list
     })
   }
+
+  public async delete() {
+    const ctx = this.ctx
+    await ctx.service.user.delete(ctx.query)
+    response(ctx, 200, '删除成功', {})
+  }
+
+  public async update() {
+    const ctx = this.ctx
+    delete ctx.request.body.permissions
+    await ctx.service.user.update(ctx.request.body)
+    response(ctx, 200, '修改成功', {})
+  }
 }
 export default UserController
